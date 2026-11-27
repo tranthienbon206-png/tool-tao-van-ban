@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lorem Ipsum Generator - Công cụ tạo văn bản mẫu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        button:focus-visible,
+        select:focus-visible,
+        input:focus-visible {
+            outline: 3px solid #bfdbfe;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen bg-slate-50 text-slate-800">
+
+    <header class="border-b border-slate-200 bg-white">
+        <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
+            <a href="#" class="flex items-center gap-3 font-bold text-slate-900">
+                <span
+                    class="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 text-lg text-white">L</span>
+                <span>Lorem Generator</span>
+            </a>
+            <span class="hidden rounded-full bg-blue-50 px-3 py-1 text-sm font-medium text-blue-700 sm:inline-block">
+                Công cụ miễn phí
+            </span>
+        </div>
+    </header>
+
+    <main class="mx-auto max-w-6xl px-5 py-10 sm:py-14">
+
+        <section class="mx-auto mb-9 max-w-3xl text-center">
+            <div
+                class="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white px-3 py-1.5 text-sm font-medium text-blue-700">
+                <span class="h-2 w-2 rounded-full bg-blue-500"></span>
+                Tạo văn bản mẫu nhanh chóng
+            </div>
+
+            <h1 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+                Lorem Ipsum Generator
+            </h1>
+
+            <p class="mx-auto mt-4 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
+                Tạo văn bản mẫu Lorem Ipsum để sử dụng trong thiết kế,
+                lập trình website và trình bày bố cục.
+            </p>
+        </section>
+
+        <section class="grid gap-6 lg:grid-cols-[340px_minmax(0,1fr)]">
+
+            <aside class="h-fit rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                <h2 class="text-lg font-semibold text-slate-900">
+                    Tùy chỉnh nội dung
+                </h2>
+
+                <p class="mt-1 text-sm text-slate-500">
+                    Chọn kiểu và số lượng văn bản muốn tạo.
+                </p>
+
+                <div class="mt-6 space-y-5">
+
+                    <div>
+                        <label for="mode" class="mb-2 block text-sm font-medium text-slate-700">
+                            Kiểu tạo văn bản
+                        </label>
+
+                        <select id="mode"
+                            class="w-full rounded-xl border border-slate-300 bg-white px-3 py-3 text-sm outline-none focus:border-blue-500">
+                            <option value="paragraphs">Theo đoạn văn</option>
+                            <option value="sentences">Theo câu</option>
+                            <option value="words">Theo từ</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <div class="mb-2 flex items-center justify-between">
+                            <label for="amount" class="text-sm font-medium text-slate-700">
+                                Số lượng
+                            </label>
+
+                            <span id="amountValue"
+                                class="rounded-lg bg-blue-50 px-2.5 py-1 text-sm font-semibold text-blue-700">
+                                3
+                            </span>
+                        </div>
+
+                        <input id="amount" type="range" min="1" max="20" value="3"
+                            class="w-full cursor-pointer accent-blue-600">
+
+                        <div class="mt-1 flex justify-between text-xs text-slate-400">
+                            <span>1</span>
+                            <span id="maxValue">20</span>
+                        </div>
+                    </div>
+
+                    <label class="flex cursor-pointer items-center gap-3 rounded-xl bg-slate-50 p-3">
+                        <input id="startLorem" type="checkbox" checked class="h-4 w-4 accent-blue-600">
+
+                        <span>
+                            <span class="block text-sm font-medium text-slate-800">
+                                Bắt đầu bằng Lorem Ipsum
+                            </span>
+                            <span class="block text-xs text-slate-500">
+                                Dùng câu mở đầu quen thuộc
+                            </span>
+                        </span>
+                    </label>
+
+                    <button id="generateBtn"
+                        class="w-full rounded-xl bg-blue-600 px-4 py-3 font-semibold text-white shadow-sm transition hover:bg-blue-700 active:scale-[0.99]">
+                        Tạo văn bản
+                    </button>
+
+                </div>
+            </aside>
+
+            <section class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+
+                <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+
+                    <div>
+                        <h2 class="text-lg font-semibold text-slate-900">
+                            Kết quả văn bản
+                        </h2>
+
+                        <p id="resultInfo" class="mt-1 text-sm text-slate-500">
+                            Chưa có nội dung được tạo
+                        </p>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2">
+                        <button id="copyBtn"
+                            class="rounded-lg border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50">
+                            Sao chép
+                        </button>
+
+                        <button id="clearBtn"
+                            class="rounded-lg border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50">
+                            Xóa
+                        </button>
+                    </div>
+                </div>
+
+                <div id="output"
+                    class="mt-5 min-h-[360px] whitespace-pre-wrap rounded-xl border border-slate-200 bg-slate-50 p-5 text-sm leading-7 text-slate-700 sm:text-base"
+                    aria-live="polite">
+                    Nội dung Lorem Ipsum sẽ xuất hiện ở đây.
+                </div>
+
+                <div class="mt-3 flex items-center justify-between text-xs text-slate-500">
+                    <span id="wordCount">0 từ</span>
+                    <span id="charCount">0 ký tự</span>
+                </div>
+
+                <p id="notice" class="mt-3 min-h-5 text-sm text-green-700" role="status"></p>
+
+            </section>
+        </section>
+
+        <section class="mt-10 grid gap-4 sm:grid-cols-3">
+
+            <div class="rounded-2xl border border-slate-200 bg-white p-5">
+                <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-700">
+                    ✦
+                </div>
+                <h3 class="font-semibold text-slate-900">Dễ sử dụng</h3>
+                <p class="mt-1 text-sm leading-6 text-slate-600">
+                    Chọn số lượng và kiểu văn bản chỉ với vài thao tác.
+                </p>
+            </div>
+
+            <div class="rounded-2xl border border-slate-200 bg-white p-5">
+                <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-700">
+                    ▤
+                </div>
+                <h3 class="font-semibold text-slate-900">Nhiều tùy chọn</h3>
+                <p class="mt-1 text-sm leading-6 text-slate-600">
+                    Tạo theo đoạn văn, câu hoặc số từ tùy nhu cầu.
+                </p>
+            </div>
+
+            <div class="rounded-2xl border border-slate-200 bg-white p-5">
+                <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-700">
+                    ✓
+                </div>
+                <h3 class="font-semibold text-slate-900">Miễn phí</h3>
+                <p class="mt-1 text-sm leading-6 text-slate-600">
+                    Không cần đăng ký tài khoản, có thể sao chép ngay.
+                </p>
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="border-t border-slate-200 bg-white">
+        <div class="mx-auto max-w-6xl px-5 py-6 text-center text-sm text-slate-500">
+            © 2026 Lorem Generator. Công cụ tạo văn bản mẫu miễn phí.
+        </div>
+    </footer>
+
+    <script>
+        const words = [
+            "lorem", "ipsum", "dolor", "sit", "amet", "consectetur",
+            "adipiscing", "elit", "sed", "do", "eiusmod", "tempor",
+            "incididunt", "ut", "labore", "et", "dolore", "magna",
+            "aliqua", "enim", "ad", "minim", "veniam", "quis",
+            "nostrud", "exercitation", "ullamco", "laboris", "nisi",
+            "aliquip", "ex", "ea", "commodo", "consequat", "duis",
+            "aute", "irure", "reprehenderit", "voluptate", "velit",
+            "esse", "cillum", "fugiat", "nulla", "pariatur",
+            "excepteur", "sint", "occaecat", "cupidatat", "non",
+            "proident", "sunt", "culpa", "qui", "officia",
+            "deserunt", "mollit", "anim", "id", "est", "laborum"
+        ];
+
+        const mode = document.getElementById("mode");
+        const amount = document.getElementById("amount");
+        const amountValue = document.getElementById("amountValue");
+        const maxValue = document.getElementById("maxValue");
+        const startLorem = document.getElementById("startLorem");
+        const output = document.getElementById("output");
+        const resultInfo = document.getElementById("resultInfo");
+        const wordCount = document.getElementById("wordCount");
+        const charCount = document.getElementById("charCount");
+        const notice = document.getElementById("notice");
+
+        function updateRange() {
+            const limits = {
+                paragraphs: 20,
+                sentences: 100,
+                words: 500
+            };
+
+            amount.max = limits[mode.value];
+
+            if (Number(amount.value) > limits[mode.value]) {
+                amount.value = limits[mode.value];
+            }
+
+            amountValue.textContent = amount.value;
+            maxValue.textContent = amount.max;
+        }
+
+        function randomSentence() {
+            const length = Math.floor(Math.random() * 9) + 8;
+
+            const sentence = Array.from(
+                {length},
+                () => words[Math.floor(Math.random() * words.length)]
+            );
+
+            sentence[0] = sentence[0][0].toUpperCase() + sentence[0].slice(1);
+
+            return sentence.join(" ") + ".";
+        }
+
+        function generate() {
+            notice.textContent = "";
+
+            const count = Number(amount.value);
+            let text = "";
+
+            if (mode.value === "words") {
+                const list = [];
+
+                for (let i = 0; i < count; i++) {
+                    list.push(words[Math.floor(Math.random() * words.length)]);
+                }
+
+                if (startLorem.checked && list.length >= 2) {
+                    list[0] = "Lorem";
+                    list[1] = "ipsum";
+                }
+
+                text = list.join(" ") + ".";
+
+            } else if (mode.value === "sentences") {
+
+                const list = Array.from(
+                    {length: count},
+                    randomSentence
+                );
+
+                if (startLorem.checked && list.length) {
+                    list[0] = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
+                }
+
+                text = list.join(" ");
+
+            } else {
+
+                const paragraphs = [];
+
+                for (let i = 0; i < count; i++) {
+                    const sentenceCount = Math.floor(Math.random() * 3) + 3;
+
+                    const sentences = Array.from(
+                        {length: sentenceCount},
+                        randomSentence
+                    );
+
+                    if (i === 0 && startLorem.checked) {
+                        sentences[0] = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
+                    }
+
+                    paragraphs.push(sentences.join(" "));
+                }
+
+                text = paragraphs.join("\n\n");
+            }
+
+            output.textContent = text;
+
+            updateStats(text);
+
+            const labels = {
+                paragraphs: "đoạn văn",
+                sentences: "câu",
+                words: "từ"
+            };
+
+            resultInfo.textContent = `Đã tạo ${count} ${labels[mode.value]}`;
+        }
+
+        function updateStats(text) {
+            const trimmed = text.trim();
+
+            const count = trimmed
+                ? trimmed.split(/\s+/).length
+                : 0;
+
+            wordCount.textContent = `${count} từ`;
+            charCount.textContent = `${text.length} ký tự`;
+        }
+
+        mode.addEventListener("change", updateRange);
+
+        amount.addEventListener("input", () => {
+            amountValue.textContent = amount.value;
+        });
+
+        document.getElementById("generateBtn").addEventListener("click", generate);
+
+        document.getElementById("copyBtn").addEventListener("click", async () => {
+            const text = output.textContent;
+
+            if (!text.trim() || text.startsWith("Nội dung Lorem Ipsum sẽ xuất hiện")) {
+                notice.textContent = "Chưa có nội dung để sao chép.";
+                return;
+            }
+
+            try {
+                await navigator.clipboard.writeText(text);
+                notice.textContent = "Đã sao chép nội dung!";
+            } catch {
+                const area = document.createElement("textarea");
+
+                area.value = text;
+                document.body.appendChild(area);
+                area.select();
+
+                document.execCommand("copy");
+                area.remove();
+
+                notice.textContent = "Đã sao chép nội dung!";
+            }
+        });
+
+        document.getElementById("clearBtn").addEventListener("click", () => {
+            output.textContent = "";
+            resultInfo.textContent = "Nội dung đã được xóa";
+            notice.textContent = "";
+
+            updateStats("");
+        });
+
+        updateRange();
+        generate();
+    </script>
+
+</body>
+
+</html>
